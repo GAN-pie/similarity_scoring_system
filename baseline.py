@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import os
 import sys
-from os import path
-import time
 from concurrent import futures
 
 import math
@@ -17,7 +14,6 @@ from sklearn.metrics import roc_curve, accuracy_score
 from scipy.stats import ttest_ind
 
 from config import *
-from utils import *
 
 
 def compute_baseline(features):

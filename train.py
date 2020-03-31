@@ -5,7 +5,6 @@ import os
 from os import path
 import time
 import pickle
-import json
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -61,16 +60,22 @@ if __name__ == "__main__":
     hist = siamese.fit(
         x=X,
         y=Y,
-        # steps_per_epoch=len(train_data),
         epochs=options.max_epoch,
         callbacks=callb,
         validation_data=test_data()
-        # # validation_steps=len(test_data),
-        # max_queue_size=50,
-        # workers=options.num_workers,
-        # use_multiprocessing=True,
-        # shuffle=False
     )
+
+    # hist = siamese.fit_generator(
+    #     train_data,
+    #     steps_per_epoch=len(train_data),
+    #     epochs=options.max_epoch,
+    #     callbacks=callb,
+    #     validation_data=test_data,
+    #     validation_steps=len(test_data),
+    #     max_queue_size=50,
+    #     workers=options.num_workers,
+    #     use_multiprocessing=True,
+    #     shuffle=False)
 
     with open(path.join(options.log_files_path, "train_history.pkl"), "wb") as fd:
         fd.write(pickle.dumps(hist.history))

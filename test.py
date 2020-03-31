@@ -2,11 +2,9 @@
 # coding: utf-8
 import time
 import os
-import argparse
 from os import path
 import json
 import sys
-import pickle
 
 import numpy as np
 import pandas as pd
@@ -26,9 +24,6 @@ import tensorflow as tf
 from nnet import *
 from data import *
 from config import *
-
-
-
 
 
 if __name__ == "__main__":
@@ -59,7 +54,6 @@ if __name__ == "__main__":
     [X1, X2], Y = test_data(testing=False)
 
     distance_layer_model = Model(inputs=model.input, outputs=model.get_layer("metric").output)
-    # distance_layer_model = Model(inputs=model.input, outputs=model.get_layer("similarity").output)
 
     predictions = distance_layer_model.predict([X1, X2], batch_size=options.test_batch_size).flatten()
     np.save(path.join(options.result_files_path, "distances.npy"), predictions)

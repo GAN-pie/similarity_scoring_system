@@ -1,17 +1,12 @@
 # coding: utf-8
 
-from os import path
-
 import numpy as np
 import pandas as pd
 
-import tensorflow as tf
 from keras import backend as K
-from keras.layers import Input, Dense, Dropout, Activation, Lambda, BatchNormalization
-from keras.optimizers import Adadelta, RMSprop, SGD
-from keras.constraints import maxnorm
-from keras.initializers import glorot_normal, lecun_normal
-from keras.models import Model, load_model
+from keras.layers import Input, Dense, Activation, Lambda
+from keras.optimizers import Adadelta, SGD
+from keras.models import Model
 from keras.callbacks import Callback
 
 from scipy.optimize import brentq
@@ -30,11 +25,6 @@ def eucd(x):
 def mand(x):
     (x1, x2) = x
     return K.sum(K.abs(x1 - x2), axis=1, keepdims=True)
-
-
-def cosd(x):
-    (x1, x2) = x
-    return K.sum(K.dot(x1, x2) / K.sqrt(K.dot(x1, x1)) * K.sqrt(K.dot(x2, x2)), axis=1, keepdims=True)
 
 
 def contrastive_loss(options):
@@ -74,15 +64,14 @@ def make_siamese(options):
     else:
         metric = Lambda(eucd, name="metric")([left_embedding, right_embedding])
 
-    # metric = Activation("sigmoid")(metric)
-
     if options.loss == "lecun":
         loss = contrastive_loss(options)
         siamese = Model(inputs=[left_in_layer, right_in_layer], outputs=metric, name="siamese")
         siamese.compile(optimizer, loss)
     elif options.loss == "binary_crossentropy":
         loss = "binary_crossentropy"
-        metric = Dense(1,
+        metric = Dense(
+            1,
             activation="sigmoid",
             kernel_initializer="glorot_normal",
             bias_initializer="zero", name="similarity")(metric)
@@ -91,7 +80,6 @@ def make_siamese(options):
 
     siamese.summary()
     return siamese
-
 
 
 class Accuracy(Callback):

@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import pickle
-
 import numpy as np
 from keras.utils import Sequence
-
-
 
 class Dataset:
     """The Dataset class provides the full trial pairs set ready to be processed by neural net.
@@ -36,7 +32,6 @@ class Dataset:
             self.trials = np.load(options.test_trials_array)
             self.left_inputs = np.load(options.test_en_array)
             self.right_inputs = np.load(options.test_fr_array)
-
 
         self._num_pairs = len(self.trials)
 
