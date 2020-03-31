@@ -12,7 +12,7 @@ You first need to prepare the data using the make-trials.py script. The script c
 
 Simply run :
 ```
-python train.py && test.py
+python train.py && python test.py
 ```
 
 Data can be shared on explicit request.
