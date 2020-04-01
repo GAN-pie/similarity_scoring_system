@@ -34,7 +34,7 @@ class Config:
     mode = "train"
 
     train_batch_size = 24
-    test_batch_size = 1024
+    test_batch_size = 128
 
     input_shape = (400,)
 

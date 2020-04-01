@@ -4,6 +4,7 @@
 import numpy as np
 from keras.utils import Sequence
 
+
 class Dataset:
     """The Dataset class provides the full trial pairs set ready to be processed by neural net.
     Warning: can be very memory consumptive with large trials file."""
