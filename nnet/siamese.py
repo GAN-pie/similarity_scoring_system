@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from os import path
+
 import numpy as np
 import pandas as pd
 
@@ -11,8 +13,11 @@ from keras.callbacks import Callback
 
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
-from sklearn.metrics import roc_curve, accuracy_score
+from sklearn.metrics import roc_curve, accuracy_score, auc
 from scipy.stats import ttest_ind
+
+import matplotlib.pyplot as plt
+import seaborn
 
 from .feedforward import make_feedforward
 
@@ -99,6 +104,20 @@ class Accuracy(Callback):
         true_labels = self._data.trials[:, 2].flatten()
 
         fpr, tpr, threshold = roc_curve(true_labels, normalized_preds)
+
+        if epoch % self.options.plot_freq == 0:
+            roc_auc = auc(fpr, tpr)
+
+            fig = plt.figure()
+            plt.plot(fpr, tpr, label="ROC curve (area = {0:.2f})".format(roc_auc))
+            plt.plot([0, 1], [0, 1], linestyle="--")
+            plt.xlabel("False Positive Rate")
+            plt.ylabel("True Positive Rate")
+            plt.title("Receiver Operating Characteristic")
+            plt.legend(loc="lower right")
+            plt.savefig(path.join(self.options.result_files_path, "validation_roc_auc_"+str(epoch)+".pdf"))
+
+
         eer = brentq(lambda x: 1.0 - x - interp1d(fpr, tpr)(x), 0.0, 1.0)
         eer_threshold = interp1d(fpr, threshold)(eer)
 

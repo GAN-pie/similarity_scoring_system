@@ -1,0 +1,17 @@
+results/
+logs/
+models/
+checkpoints
+*__pycache__*
+data/array
+data/lst
+bin/create-folds.py
+bin/find-matching-segment.py
+bin/mnist-similarity-test.py
+bin/nnet.py
+bin/nnet2.py
+bin/score-siamese.py
+bin/score-similarity.py
+bin/train-siamese.py
+bin/train-similarity.py
+run.sh
