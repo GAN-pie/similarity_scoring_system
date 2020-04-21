@@ -18,6 +18,7 @@ from config import *
 if __name__ == "__main__":
 
     options = Config()
+    # options.parse_command_line()
 
     start = time.time()
     if options.use_gpu == True:

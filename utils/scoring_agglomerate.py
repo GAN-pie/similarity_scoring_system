@@ -24,7 +24,6 @@ from scipy.stats import ttest_ind
 This module gives scores agglomerative functions
 """
 
-import numpy as np
 
 
 def concatenate_scores(arrays_list):
