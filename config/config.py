@@ -11,29 +11,29 @@ import argparse
 
 class Config:
     backend = "feedforward"
-    loss = "binary_crossentropy"
+    loss = "lecun"
     input_size = 400
     hidden_size = 128
     metric = "euclidean"
-    margin = 32.0
+    margin = 30.0
 
-    train_trials_array = "data/array/train_4/trials.npy"
-    train_en_array = "data/array/train_4/english_feats.npy"
-    train_fr_array = "data/array/train_4/french_feats.npy"
-    val_trials_array = "data/array/val_4/trials.npy"
-    val_en_array = "data/array/val_4/english_feats.npy"
-    val_fr_array = "data/array/val_4/french_feats.npy"
+    train_trials_array = "data/array/train_1/trials.npy"
+    train_en_array = "data/array/train_1/english_feats.npy"
+    train_fr_array = "data/array/train_1/french_feats.npy"
+    val_trials_array = "data/array/val_1/trials.npy"
+    val_en_array = "data/array/val_1/english_feats.npy"
+    val_fr_array = "data/array/val_1/french_feats.npy"
 
-    test_trials_array = "data/array/test_4/trials.npy"
-    test_en_array = "data/array/test_4/english_feats.npy"
-    test_fr_array = "data/array/test_4/french_feats.npy"
+    test_trials_array = "data/array/test_1/trials.npy"
+    test_en_array = "data/array/test_1/english_feats.npy"
+    test_fr_array = "data/array/test_1/french_feats.npy"
 
-    checkpoints_path = "checkpoints/4/"
-    load_model_weights_path = "checkpoints/4/init_weights.h5"
-    test_model_path = "checkpoints/4/model_checkpoint.h5"
+    checkpoints_path = "checkpoints/1/"
+    load_model_weights_path = "checkpoints/1/init_weights.h5"
+    test_model_path = "checkpoints/1/model_checkpoint.h5"
 
-    log_files_path = "logs/4"
-    result_files_path = "results/4"
+    log_files_path = "logs/1"
+    result_files_path = "results/1"
 
     mode = "train"
 
@@ -55,7 +55,7 @@ class Config:
     num_workers = 4
     print_freq = 5
 
-    max_epoch = 50
+    max_epoch = 100
     early_stopping = True
 
     plot_freq = 5
@@ -111,7 +111,7 @@ class Config:
 
         command_parser.add_argument("--print-frep", default=5, type=int)
 
-        command_parser.add_argument("--max-epoch", default=50, type=int)
+        command_parser.add_argument("--max-epoch", default=100, type=int)
 
 
         early_stopping = command_parser.add_mutually_exclusive_group()
