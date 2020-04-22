@@ -18,7 +18,7 @@ from config import *
 if __name__ == "__main__":
 
     options = Config()
-    # options.parse_command_line()
+    options.parse_command_line()
 
     start = time.time()
     if options.use_gpu == True:
@@ -27,6 +27,9 @@ if __name__ == "__main__":
         sess_config.gpu_options.allow_growth = True
         sess = tf.Session(config=sess_config)
         set_session(sess)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 
     # prepare data
 

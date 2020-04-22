@@ -14,4 +14,4 @@ bin/score-siamese.py
 bin/score-similarity.py
 bin/train-siamese.py
 bin/train-similarity.py
-run.sh
+run.sh.old

@@ -105,7 +105,7 @@ class Accuracy(Callback):
 
         fpr, tpr, threshold = roc_curve(true_labels, normalized_preds)
 
-        if epoch % self.options.plot_freq == 0:
+        if epoch % self.options.print_freq == 0:
             roc_auc = auc(fpr, tpr)
 
             fig = plt.figure()
