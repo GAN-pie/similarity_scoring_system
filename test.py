@@ -90,8 +90,8 @@ if __name__ == "__main__":
 
 
     # compute tscore
-    mask_tar = np.where(Y == 1)
-    mask_nontar = np.where(Y == 0)
+    mask_tar = np.where(Y == 0)
+    mask_nontar = np.where(Y == 1)
 
     tar_norm_preds = normalized_preds[mask_tar]
     nontar_norm_preds = normalized_preds[mask_nontar]
